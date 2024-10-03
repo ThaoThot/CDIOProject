@@ -14,10 +14,10 @@ public class Enemy_Behavior : MonoBehaviour
     private RaycastHit2D hit;
     private GameObject target;
     private Animator anim;
-    private float distance;
+    private float distance;     //lưu trữ khoảng cách giữa kẻ thù và người chơi
     private bool attackMode;
-    private bool inRange;
-    private bool cooling;
+    private bool inRange;       // kiểm tra xem có đối tượng người chơi trong phạm vi không
+    private bool cooling;       // kiểm tra làm mát sau tấn công
     private float intTimer;
 
 
@@ -46,7 +46,7 @@ public class Enemy_Behavior : MonoBehaviour
 
         if (inRange == false)
         {
-            anim.SetBool("CanWalk", false);
+            anim.SetBool("canWalk", false);
             StopAttack();
         }
     }
@@ -76,29 +76,41 @@ public class Enemy_Behavior : MonoBehaviour
 
         if (cooling)
         {
+            Cooldown();
             anim.SetBool("Attack", false);
         }
     }
 
     void Move()
     {
-        anim.SetBool("CanWalk", true);
+        anim.SetBool("canWalk", true);
 
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Skel_attack"))
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             Vector2 targetPosition = new Vector2(target.transform.position.x, transform.position.y);
 
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
         }
     }
-
+     
     void Attack()
     {
-        timer = intTimer;
-        attackMode = true;
+        timer = intTimer;   //đặt lại thời gian khi người chơi vào phạm vi tấn công
+        attackMode = true;  // kiểm tra xem có thể tấn công hay không
 
-        anim.SetBool("CanWalk", false);
+        anim.SetBool("canWalk", false);
         anim.SetBool("Attack", true);
+    }
+
+    void Cooldown()
+    {
+        timer -= Time.deltaTime; 
+
+        if (timer <= 0 && cooling && attackMode)
+        {
+            cooling = false;
+            timer = intTimer;
+        }
     }
 
     void StopAttack()
@@ -119,4 +131,9 @@ public class Enemy_Behavior : MonoBehaviour
             Debug.DrawRay(rayCast.position, Vector2.left * rayCastLength, Color.green);
         }
     }
+    public void TriggerCooling()
+    {
+        cooling = true;
+    }  
+
 }
