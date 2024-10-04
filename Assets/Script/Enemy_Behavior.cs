@@ -5,25 +5,25 @@ using UnityEngine;
 public class Enemy_Behavior : MonoBehaviour
 {
     #region Public
-    public Transform rayCast;
-    public LayerMask rayCastMask;
-    public float rayCastLength;
+  
     public float attackDistance;    // Khoảng cách tối thiểu để tấn công
     public float moveSpeed;
     public float timer;     // Thời gian hồi chiêu
 
     public Transform leftLimit;     //giới hạn trái
     public Transform rightLimit;    //giới hạn phải
-
+    [HideInInspector] public Transform target;
+    [HideInInspector] public bool inRange;
+    public GameObject hotZone;
+    public GameObject triggerAera;
     #endregion
 
     #region Private
-    private RaycastHit2D hit;
-    private Transform target;
+
     private Animator anim;
     private float distance;     //lưu trữ khoảng cách giữa kẻ thù và người chơi
     private bool attackMode;
-    private bool inRange;       // kiểm tra xem có đối tượng người chơi trong phạm vi không
+       
     private bool cooling;       // kiểm tra làm mát sau tấn công
     private float intTimer;
     #endregion
@@ -48,33 +48,7 @@ public class Enemy_Behavior : MonoBehaviour
 
         if (inRange)
         {
-            hit = Physics2D.Raycast(rayCast.position, transform.right, rayCastLength, rayCastMask);
-            RayCastDebugger();
-        }
-
-        // Khi phát hiện người chơi
-        if (hit.collider != null)
-        {
             EnemyLogic();
-        }
-        else 
-        {
-            inRange = false;
-        }
-
-        if (inRange == false)
-        {
-            StopAttack();
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            target = other.transform;
-            inRange = true;
-            Flip();
         }
     }
 
@@ -141,18 +115,6 @@ public class Enemy_Behavior : MonoBehaviour
         anim.SetBool("Attack", false);
     }
 
-    void RayCastDebugger()
-    {
-        if (distance > attackDistance)
-        {
-            Debug.DrawRay(rayCast.position, transform.right * rayCastLength, Color.red);
-        }
-        else if (attackDistance > distance)
-        {
-            Debug.DrawRay(rayCast.position, transform.right * rayCastLength, Color.green);
-        }
-    }
-
     public void TriggerCooling()
     {
         cooling = true;
@@ -164,7 +126,7 @@ public class Enemy_Behavior : MonoBehaviour
         return transform.position.x > leftLimit.position.x && transform.position.x < rightLimit.position.x; 
     }
 
-    private void SelectTarget()
+    public void SelectTarget()
     {
         float distanceToLeft = Vector2.Distance(transform.position, leftLimit.position);
         float distanceToRight = Vector2.Distance(transform.position,  rightLimit.position);
@@ -173,7 +135,7 @@ public class Enemy_Behavior : MonoBehaviour
         Flip();
     }
 
-    private void Flip()
+    public void Flip()
     {
         Vector3 rotation = transform.eulerAngles;
         rotation.y = transform.position.x > target.position.x ? 180f : 0f;
