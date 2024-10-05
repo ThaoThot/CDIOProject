@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int maxHealth = 100; // S?c kh?e t?i ?a
-    private int currentHealth;  // S?c kh?e hi?n t?i
+    public int maxHealth = 100; // sức khỏe tối đa
+    private int currentHealth;  // Sức khởe hiện tại
 
     void Start()
     {

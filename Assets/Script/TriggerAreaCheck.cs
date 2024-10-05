@@ -8,7 +8,7 @@ public class triger : MonoBehaviour
 
     private void Awake()
     {
-        enemyParent = GetComponetInParent<Enemy_Behavior>();
+        enemyParent = GetComponentInParent<Enemy_Behavior>();
 
     }
 
