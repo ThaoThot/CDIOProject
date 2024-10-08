@@ -5,7 +5,6 @@ using UnityEngine;
 public class Enemy_Behavior : MonoBehaviour
 {
     #region Public
-    public int maxHealth = 100; // sức khỏe tối đa
 
     public float attackDistance;    // Khoảng cách tối thiểu để tấn công
     public float moveSpeed;
@@ -20,7 +19,7 @@ public class Enemy_Behavior : MonoBehaviour
     #endregion
 
     #region Private
-    private int currentHealth;  // Sức khởe hiện tại
+    
 
     private Animator anim;
     private float distance;     //lưu trữ khoảng cách giữa kẻ thù và người chơi
@@ -30,10 +29,6 @@ public class Enemy_Behavior : MonoBehaviour
     private float intTimer;
     #endregion
 
-    void Start()
-    {
-        currentHealth = maxHealth; 
-    }
         
     void Awake()
     {
@@ -42,23 +37,7 @@ public class Enemy_Behavior : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-        Debug.Log("Enemy took damage, current health: " + currentHealth);
-        anim.SetTrigger("Hurt");
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
-
-        void Die()
-    {
-        Debug.Log("Enemy died!");
-        anim.SetBool("IsDead", true);
-        Destroy(gameObject,2f);
-    }
+    
 
     void Update()
     {   if(!attackMode)

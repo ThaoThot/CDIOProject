@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    #region public
     public float moveSpeed = 5f;
     public float jumpSpeed = 9f;
     public int maxJumpCount = 2; // Số lần nhảy tối đa (2 lần)
+    #endregion
+    
+    #region  private
     private int jumpCount = 0; // Đếm số lần nhảy đã thực hiện
-
     private bool isGrounded = false;
-
-
     private bool playerFacingRight = true;
     private Rigidbody2D rb;
     private float horizontalInput;
     private Animator animator;
     private int attack = 0;
     private float m_timeSinceAttack = 0.0f;
+    #endregion
 
     void Start()
     {
@@ -63,8 +65,8 @@ public class Player : MonoBehaviour
     {
         if (collision.transform.tag == "Ground")
         {
-            isGrounded = true;
-            jumpCount = 0;  // reset so lan nhay khi cham dat
+            isGrounded = true;  // Xác định khi chạm đất
+            jumpCount = 0;   // Reset số lần nhảy
         }
         if (collision.transform.tag == "deadzone")
         {
