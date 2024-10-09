@@ -5,13 +5,13 @@ using UnityEngine;
 public class AttackOfEnemy : MonoBehaviour
 {
     public int enemyDamage = 25; // Sát thương của mỗi đòn tấn công
-    
-    private void OnCollisionEnter2D(Collision2D collision)
+    public PlayerHealth playerHealth;
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (col.gameObject.CompareTag("Player"))
         {
-            Debug.Log("mlem");
-            PlayerHealth playerHealth = collision.transform.parent.GetComponent<PlayerHealth>();
+            Debug.Log("cac");
+            playerHealth = col.transform.GetComponent<PlayerHealth>();
             if (playerHealth != null)    // Kiểm tra xem có đối tượng không
             {
                 playerHealth.TakeDamage(enemyDamage);
