@@ -49,25 +49,22 @@ public class PlayerHealth : MonoBehaviour
         anim.SetTrigger("Die");     // Kích hoạt hoạt ảnh chết
     }
 
-                    // Phương thức để hồi máu
-                    // public void Heal(int amount)
-                    // {
-                    //     if (isDead) return;
+    public void Heal(int amount)
+    {
+        if (currentHealth<=0) return;  // Nếu đã chết, không thể hồi máu
 
-                    //     currentHealth += amount;// hồi
-                    //     if (currentHealth > maxHealth)
-                    //     {
-                    //         currentHealth = maxHealth;
-                    //     }
+        currentHealth += amount;  // Hồi máu
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;  // Đảm bảo không vượt quá máu tối đa
+        }
 
-                    //     // Cập nhật thanh máu nếu có
-                    //     if (healthBar != null)
-                    //     {
-                    //         healthBar.value = currentHealth;
-                    //     }
+        if (healthBar != null)// Cập nhật thanh máu nếu có
+        {
+            healthBar.value = currentHealth;
+        }
 
-                    //     Debug.Log("Player healed, current health: " + currentHealth);
-                    // }
-
-    
+        Debug.Log("Player healed, current health: " + currentHealth);
+    }
+        
 }
