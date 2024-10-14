@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Attack : MonoBehaviour
 {
     public int attackDamage = 25; // Sát thương của mỗi đòn tấn công
     

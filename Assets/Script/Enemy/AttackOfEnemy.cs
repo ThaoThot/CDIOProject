@@ -10,7 +10,7 @@ public class AttackOfEnemy : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            Debug.Log("cac");
+            Debug.Log("gây sát thương");
             playerHealth = col.transform.GetComponent<PlayerHealth>();
             if (playerHealth != null)    // Kiểm tra xem có đối tượng không
             {
