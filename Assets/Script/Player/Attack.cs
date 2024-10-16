@@ -10,7 +10,7 @@ public class Attack : MonoBehaviour
     {
          if (col.gameObject.CompareTag("enemy"))
         {
-            Debug.Log("cac");
+            Debug.Log("oke");
               EnemyHealth enemyHealth = col.transform.parent.GetComponent<EnemyHealth>();
             if (enemyHealth != null)    // Kiểm tra xem có đối tượng không
             {

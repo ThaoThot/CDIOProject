@@ -92,7 +92,7 @@ public class Flying_EnemyBehavior : MonoBehaviour
     {  
         anim.SetTrigger("Explode");  //boom
         Debug.Log("đã nổ!!");
-
+        
         // Sau khi nổ, kẻ thù biến mất
         Destroy(gameObject, 0.68f);
     }

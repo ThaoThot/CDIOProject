@@ -8,6 +8,8 @@ public class BackgroundMusicManager : MonoBehaviour
         get { return instance; }
     }
 
+    private AudioSource audioSource;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -19,7 +21,14 @@ public class BackgroundMusicManager : MonoBehaviour
         {
             instance = this;
         }
-
         DontDestroyOnLoad(this.gameObject);
+         audioSource = GetComponent<AudioSource>();
+    }
+     public void StopMusic()
+    {
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+        }
     }
 }

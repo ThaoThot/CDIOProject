@@ -16,6 +16,7 @@ public class Enemy_Behavior : MonoBehaviour
     [HideInInspector] public bool inRange;
     public GameObject hotZone;
     public GameObject triggerAera;
+    
     #endregion
 
     #region Private

@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; // cập nhật thanh máu nếu có UI
+using UnityEngine.SceneManagement; 
 
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;  // Sức khỏe tối đa của player
-    private int currentHealth;   // Sức khỏe hiện tại của player
     public Slider healthBar;     // Thanh máu UI 
+    public GameObject gameOverPanel;  // Tham chiếu đến UI panel
 
     private Animator anim;       // Animator của player
-
+    private int currentHealth;   // Sức khỏe hiện tại của player
     void Start() 
     {
         currentHealth = maxHealth;
@@ -20,6 +21,11 @@ public class PlayerHealth : MonoBehaviour
         {
             healthBar.maxValue = maxHealth;
             healthBar.value = currentHealth;
+        }
+
+         if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(false);
         }
     }
 
@@ -47,6 +53,22 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("Player died!");
         anim.SetTrigger("Die");     // Kích hoạt hoạt ảnh chết
+
+        
+        if (BackgroundMusicManager.Instance != null)// Ngưng phát nhạc khi nhân vật chết
+        {
+            BackgroundMusicManager.Instance.StopMusic();
+        }
+
+        // Hiển thị bảng lựa chọn sau khi chết
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+        }
+       // Destroy(gameObject);
+
+        // Dừng thời gian để tạm ngưng game
+        Time.timeScale = 1f;
     }
 
     public void Heal(int amount)

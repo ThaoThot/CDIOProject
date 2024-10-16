@@ -5,6 +5,9 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public int maxHealth = 100;  // Sức khỏe tối đa
+    public GameObject healthItemPrefab;  //prefab item hồi máu
+    public Transform dropPosition;  // Vị trí xuất hiện item
+
     private int currentHealth;   // Sức khỏe hiện tại
     private Animator anim;
 
@@ -31,17 +34,8 @@ public class EnemyHealth : MonoBehaviour
     {
     Debug.Log("Enemy chết, IsDead  true");
     anim.SetTrigger("IsDead");  // Kích hoạt hoạt ảnh chết
-
-
-    if (anim == null)
-    {
-        Debug.LogError("Animator không họat động!");
-    }
-    else
-    {
-        Debug.Log("Animator hoạt động ");
-    }   
-    
+    Debug.Log("gọi item");
+    Instantiate(healthItemPrefab, dropPosition.position, Quaternion.identity);
     
     Destroy(gameObject, 0.75f);  // Hủy đối tượng sau 0.75 giây
     }
