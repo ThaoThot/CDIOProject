@@ -8,13 +8,17 @@ public class LoadNextLevel : MonoBehaviour
     public float deLaySecond = 2;
     public string nameScene = "Level2";
 
+    public bool hasKey = false;
+    
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" && hasKey)
         {
             collision.gameObject.SetActive(false);
 
             ModeSelect();
+        } else {
+            Debug.Log("Hãy tìm chìa khóa!");
         }
     }
 

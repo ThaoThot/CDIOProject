@@ -10,6 +10,7 @@ public class EnemyHealth : MonoBehaviour
 
     private int currentHealth;   // Sức khỏe hiện tại
     private Animator anim;
+    private bool hasDropItem = false;
 
     void Start()
     {
@@ -34,8 +35,12 @@ public class EnemyHealth : MonoBehaviour
     {
     Debug.Log("Enemy chết, IsDead  true");
     anim.SetTrigger("IsDead");  // Kích hoạt hoạt ảnh chết
+
+    if(!hasDropItem){
     Debug.Log("gọi item");
-    Instantiate(healthItemPrefab, dropPosition.position, Quaternion.identity);
+    Instantiate(healthItemPrefab, dropPosition.position, Quaternion.identity);  
+    hasDropItem = true;
+    }
     
     Destroy(gameObject, 0.75f);  // Hủy đối tượng sau 0.75 giây
     }

@@ -14,6 +14,10 @@ public class UIManager : MonoBehaviour
 
         // Load lại scene hiện tại (tạo lại game)
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (MusicBG.Instance != null)
+        {
+            MusicBG.Instance.StartMusic();
+        }
     }
 
     // Phương thức để xử lý khi nhấn nút Quit

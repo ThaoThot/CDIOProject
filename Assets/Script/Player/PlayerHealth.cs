@@ -55,9 +55,9 @@ public class PlayerHealth : MonoBehaviour
         anim.SetTrigger("Die");     // Kích hoạt hoạt ảnh chết
 
         
-        if (BackgroundMusicManager.Instance != null)// Ngưng phát nhạc khi nhân vật chết
+        if (MusicBG.Instance != null)// Ngưng phát nhạc khi nhân vật chết
         {
-            BackgroundMusicManager.Instance.StopMusic();
+            MusicBG.Instance.StopMusic();
         }
 
         // Hiển thị bảng lựa chọn sau khi chết

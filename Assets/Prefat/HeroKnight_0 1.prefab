@@ -108,10 +108,11 @@ GameObject:
   - component: {fileID: 3384242531117868496}
   - component: {fileID: 3061085056440635141}
   - component: {fileID: 8066963576200992426}
-  - component: {fileID: 3797802046558978018}
   - component: {fileID: 829685817852340679}
   - component: {fileID: 1181679408821735400}
+  - component: {fileID: 3797802046558978018}
   - component: {fileID: 5743615026055018959}
+  - component: {fileID: 8158989152132237824}
   m_Layer: 10
   m_Name: HeroKnight_0 1
   m_TagString: Player
@@ -197,21 +198,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3797802046558978018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5924121194434612612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 012e7c10b4ca7ec4eac6744d9456bee4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpSpeed: 8
-  maxJumpCount: 2
 --- !u!212 &829685817852340679
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -285,6 +271,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3797802046558978018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5924121194434612612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 012e7c10b4ca7ec4eac6744d9456bee4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  jumpSpeed: 8
+  maxJumpCount: 2
 --- !u!114 &5743615026055018959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,3 +300,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   healthBar: {fileID: 0}
+  gameOverPanel: {fileID: 0}
+--- !u!114 &8158989152132237824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5924121194434612612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 130d8390fc6c00042a83494e632c3594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyCount: 0
+  keyText: {fileID: 0}

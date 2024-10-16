@@ -5,6 +5,9 @@ using UnityEngine;
     public class Chest : MonoBehaviour
     {
         public Animator animator;
+        public GameObject Key;
+        public Transform KeyPosition;
+        public Inventory inventory;
 
         public bool IsOpened
         {
@@ -19,12 +22,20 @@ using UnityEngine;
 
         public void Open()
         {
+            if (!isOpened)  
+        {
             IsOpened = true;
+            Debug.Log("Rương đã mở");
+          
+            GameObject key = Instantiate(Key, KeyPosition.position, Quaternion.identity);
+            key.GetComponent<Key>().inventory = inventory; // liên kết với Inventory
+        }
         }
 
         public void Close()
         {
             IsOpened = false;
+            Debug.Log("rương đã đóng");
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -32,6 +43,7 @@ using UnityEngine;
             if (other.CompareTag("Player"))
             {
                 Open();
+                
             }
         }
 

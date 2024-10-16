@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class BackgroundMusicManager : MonoBehaviour
+public class MusicBG : MonoBehaviour
 {
-    private static BackgroundMusicManager instance = null;
-    public static BackgroundMusicManager Instance
+    private static MusicBG instance = null;
+    public static MusicBG Instance
     {
         get { return instance; }
     }
@@ -22,13 +22,27 @@ public class BackgroundMusicManager : MonoBehaviour
             instance = this;
         }
         DontDestroyOnLoad(this.gameObject);
-         audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
+
+        if (audioSource != null && !audioSource.isPlaying)
+        {
+            audioSource.Play();  
+        }
     }
+
      public void StopMusic()
     {
         if (audioSource != null)
         {
             audioSource.Stop();
+        }
+    }
+
+    public void StartMusic()
+    {
+        if (audioSource != null && !audioSource.isPlaying)
+        {
+            audioSource.Play();  
         }
     }
 }
